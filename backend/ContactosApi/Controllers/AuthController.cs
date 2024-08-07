@@ -5,7 +5,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using ContactosApi.Models;
-using BCrypt.Net;
 
 namespace ContactosApi.Controllers
 {
@@ -22,29 +21,12 @@ namespace ContactosApi.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("register")]
-        public async Task<IActionResult> Register(User user)
-        {
-            if (await _context.Users.AnyAsync(u => u.Username == user.Username))
-            {
-                return BadRequest("Username already exists");
-            }
-
-            user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(user.PasswordHash);
-            user.Id = Guid.NewGuid().ToString();
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            return Ok(new { message = "User registered successfully" });
-        }
-
         [HttpPost("login")]
         public async Task<IActionResult> Login(User loginUser)
         {
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Username == loginUser.Username);
 
-            if (user == null || !BCrypt.Net.BCrypt.Verify(loginUser.PasswordHash, user.PasswordHash))
+            if (user == null || user.PasswordHash != loginUser.PasswordHash)
             {
                 return Unauthorized("Invalid username or password");
             }
