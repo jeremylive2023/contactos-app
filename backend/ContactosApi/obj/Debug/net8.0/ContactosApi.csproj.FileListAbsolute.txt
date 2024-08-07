@@ -113,3 +113,4 @@ C:\Users\Jerem\Desktop\contactos-app\backend\ContactosApi\obj\Debug\net8.0\refin
 C:\Users\Jerem\Desktop\contactos-app\backend\ContactosApi\obj\Debug\net8.0\ContactosApi.pdb
 C:\Users\Jerem\Desktop\contactos-app\backend\ContactosApi\obj\Debug\net8.0\ContactosApi.genruntimeconfig.cache
 C:\Users\Jerem\Desktop\contactos-app\backend\ContactosApi\obj\Debug\net8.0\ref\ContactosApi.dll
+C:\Users\Jerem\Desktop\contactos-app\backend\ContactosApi\obj\Debug\net8.0\ContactosApi.sourcelink.json
